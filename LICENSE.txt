@@ -1,0 +1,15 @@
+Copyright (c) 2026 Linus rach
+All rights reserved.
+
+This software and source code are proprietary.
+
+You may not copy, modify, distribute, sell, sublicense, publish, host,
+or use this software or any part of it for commercial purposes without
+prior written permission from the copyright holder.
+
+Commercial use requires a separate written commercial license agreement.
+
+If this software or parts of it are used to generate revenue, a revenue-share
+agreement must be negotiated and approved in writing before any commercial use.
+
+Unauthorized commercial use is prohibited. 
