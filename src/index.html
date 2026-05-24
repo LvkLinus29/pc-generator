@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PC Generator</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Dubaro-orientiert mit Geizhals-Links</p>
+        <h1>PC Generator</h1>
+        <p class="hero-text">Plane einen passenden PC nach Budget, Preisspanne, Nutzung und Zielaufloesung.</p>
+      </div>
+      <img class="app-icon-preview" src="../assets/app-icon.png" alt="">
+    </section>
+
+    <section class="workspace">
+      <form class="control-panel" id="generatorForm">
+        <div class="panel-head">
+          <h2>Konfiguration</h2>
+          <span class="status-pill">Auto Theme</span>
+        </div>
+
+        <fieldset class="field">
+          <legend>Budget</legend>
+          <div class="budget-mode" role="group" aria-label="Budgetmodus">
+            <label>
+              <input type="radio" name="budgetMode" value="single" checked>
+              <span>Einzelbudget</span>
+            </label>
+            <label>
+              <input type="radio" name="budgetMode" value="range">
+              <span>Preisspanne</span>
+            </label>
+          </div>
+          <div class="budget-grid" id="singleBudget">
+            <label>
+              <span>Budget in Euro</span>
+              <input id="budget" type="number" min="400" step="50" value="1800">
+            </label>
+          </div>
+          <div class="budget-grid is-hidden" id="rangeBudget">
+            <label>
+              <span>Minimum</span>
+              <input id="minBudget" type="number" min="400" step="50" value="1200">
+            </label>
+            <label>
+              <span>Maximum</span>
+              <input id="maxBudget" type="number" min="400" step="50" value="1800">
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend>Nutzung</legend>
+          <div class="check-grid" id="useCases"></div>
+        </fieldset>
+
+        <label class="field compact">
+          <span>Ziel</span>
+          <select id="goal"></select>
+        </label>
+
+        <div class="form-actions">
+          <button class="primary" type="submit">Vorschlag erstellen</button>
+          <button class="ghost" id="copyButton" type="button">Ergebnis kopieren</button>
+        </div>
+
+        <p class="form-error" id="errorMessage" role="alert"></p>
+      </form>
+
+      <section class="result-panel" id="resultPanel" aria-live="polite">
+        <div class="empty-state">
+          <strong>Bereit fuer deinen Build.</strong>
+          <span>Waehle links Budget, Nutzung und Ziel aus.</span>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <template id="resultTemplate">
+    <article class="result">
+      <header class="result-header">
+        <div>
+          <p class="eyebrow result-use"></p>
+          <h2 class="result-title"></h2>
+          <p class="result-subtitle"></p>
+        </div>
+        <div class="score-card">
+          <span>Zielklasse</span>
+          <strong class="target-budget"></strong>
+        </div>
+      </header>
+
+      <div class="metric-row">
+        <div class="metric">
+          <span>Budget</span>
+          <strong class="budget-label"></strong>
+        </div>
+        <div class="metric">
+          <span>Einzelteile</span>
+          <strong class="parts-total"></strong>
+        </div>
+        <div class="metric">
+          <span>Status</span>
+          <strong class="budget-fit"></strong>
+        </div>
+      </div>
+
+      <div class="result-grid">
+        <section class="parts-section">
+          <div class="section-head">
+            <h3>Komponenten</h3>
+            <button class="link-button dubaro-link" type="button">Dubaro-Vergleich oeffnen</button>
+          </div>
+          <div class="parts-list"></div>
+        </section>
+
+        <aside class="notes-card">
+          <h3>Warum dieser Vorschlag?</h3>
+          <ul class="notes-list"></ul>
+          <div class="divider"></div>
+          <p>Preise schwanken stark. Pruefe bei Geizhals immer Haendler, Versand und genaue Modellnummer.</p>
+        </aside>
+      </div>
+    </article>
+  </template>
+
+  <script src="./renderer.js"></script>
+</body>
+</html>
