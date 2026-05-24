@@ -1,0 +1,58 @@
+{
+  "name": "pc-generator",
+  "version": "1.1.1",
+  "description": "Moderner PC Generator mit Dubaro-Orientierung und Geizhals-Links.",
+  "main": "src/main.cjs",
+  "author": "Lokales Projekt",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "smoke": "electron . --smoke-test",
+    "dist": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-builder.ps1 --win nsis",
+    "pack": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-builder.ps1 --dir"
+  },
+  "build": {
+    "appId": "de.local.pc-generator",
+    "productName": "PC Generator",
+    "artifactName": "PC-Generator-Setup-aktuell.${ext}",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "pc-generator.cjs",
+      "assets/**/*",
+      "README.md",
+      "package.json"
+    ],
+    "win": {
+      "icon": "assets/app-icon.ico",
+      "requestedExecutionLevel": "asInvoker",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "installerIcon": "assets/app-icon.ico",
+      "uninstallerIcon": "assets/app-icon.ico",
+      "installerHeaderIcon": "assets/app-icon.ico",
+      "shortcutName": "PC Generator",
+      "uninstallDisplayName": "PC Generator"
+    }
+  },
+  "devDependencies": {
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3"
+  }
+}
